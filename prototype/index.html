@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI/UX 原型 - 仪表盘</title>
+  <link rel="stylesheet" href="styles/tokens.css">
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/components.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- 顶部导航 -->
+  <header class="header">
+    <div class="header__logo">FlowCoder</div>
+    <nav class="header__nav">
+      <a href="index.html" class="active">仪表盘</a>
+      <a href="pages/list.html">列表</a>
+      <a href="pages/detail.html">详情</a>
+    </nav>
+    <div>
+      <button class="btn btn-primary" id="btn-open-modal">新建</button>
+    </div>
+  </header>
+
+  <!-- 侧边栏 -->
+  <aside class="sidebar">
+    <a href="index.html" class="sidebar__item active">
+      <span>📊</span>
+      <span>仪表盘</span>
+    </a>
+    <a href="pages/list.html" class="sidebar__item">
+      <span>📋</span>
+      <span>列表</span>
+    </a>
+    <a href="pages/detail.html" class="sidebar__item">
+      <span>📄</span>
+      <span>详情</span>
+    </a>
+    <a href="#" class="sidebar__item">
+      <span>⚙️</span>
+      <span>设置</span>
+    </a>
+  </aside>
+
+  <!-- 主内容区 -->
+  <main class="main">
+    <div class="main__container">
+      <h1>仪表盘</h1>
+      <p>欢迎使用 UI/UX 原型。本原型展示设计规范下的组件与布局。</p>
+
+      <!-- 统计卡片 -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-card__label">总数量</div>
+          <div class="stat-card__value">1,234</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__label">进行中</div>
+          <div class="stat-card__value">56</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__label">已完成</div>
+          <div class="stat-card__value">89</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-card__label">待处理</div>
+          <div class="stat-card__value">12</div>
+        </div>
+      </div>
+
+      <!-- 数据表格 -->
+      <div class="card">
+        <h2>最近项目</h2>
+        <div class="table-wrapper">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>名称</th>
+                <th>状态</th>
+                <th>创建时间</th>
+                <th>操作</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>项目 A</td>
+                <td><span class="badge badge-success">已完成</span></td>
+                <td>2025-02-20</td>
+                <td>
+                  <button class="btn btn-ghost btn-sm">查看</button>
+                </td>
+              </tr>
+              <tr>
+                <td>项目 B</td>
+                <td><span class="badge badge-warning">进行中</span></td>
+                <td>2025-02-22</td>
+                <td>
+                  <button class="btn btn-ghost btn-sm">查看</button>
+                </td>
+              </tr>
+              <tr>
+                <td>项目 C</td>
+                <td><span class="badge badge-neutral">待处理</span></td>
+                <td>2025-02-25</td>
+                <td>
+                  <button class="btn btn-ghost btn-sm">查看</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- 按钮示例 -->
+      <div class="card" style="margin-top: var(--spacing-lg);">
+        <h3>组件示例</h3>
+        <div style="display: flex; gap: var(--spacing-md); flex-wrap: wrap;">
+          <button class="btn btn-primary">主要按钮</button>
+          <button class="btn btn-secondary">次要按钮</button>
+          <button class="btn btn-ghost">幽灵按钮</button>
+          <button class="btn btn-danger">危险按钮</button>
+        </div>
+        <div style="margin-top: var(--spacing-md);">
+          <input type="text" class="input" placeholder="输入框示例" style="max-width: 300px;">
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 弹窗 -->
+  <div class="modal-overlay" id="modal-overlay">
+    <div class="modal">
+      <div class="modal__header">
+        <h2 class="modal__title">新建项目</h2>
+        <button class="btn btn-ghost btn-sm" id="btn-close-modal" aria-label="关闭">✕</button>
+      </div>
+      <div class="modal__body">
+        <div style="margin-bottom: var(--spacing-md);">
+          <label style="display: block; margin-bottom: var(--spacing-xs); font-weight: 500;">项目名称</label>
+          <input type="text" class="input" placeholder="请输入项目名称">
+        </div>
+        <div>
+          <label style="display: block; margin-bottom: var(--spacing-xs); font-weight: 500;">描述</label>
+          <input type="text" class="input" placeholder="请输入描述">
+        </div>
+      </div>
+      <div class="modal__footer">
+        <button class="btn btn-secondary" id="btn-cancel-modal">取消</button>
+        <button class="btn btn-primary">确认</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="scripts/interactions.js"></script>
+</body>
+</html>
