@@ -52,9 +52,19 @@ src/
 
 详见 [docs/design/设计说明-植物大战僵尸.md](./docs/design/设计说明-植物大战僵尸.md)。
 
+## 测试
+
+```bash
+npm run test:run    # 单元 + 组件测试（Vitest）
+npm run test:e2e   # E2E 测试（Playwright）
+```
+
+详见 [docs/测试计划-植物大战僵尸.md](./docs/测试计划-植物大战僵尸.md) 与 [docs/测试用例-植物大战僵尸.md](./docs/测试用例-植物大战僵尸.md)。
+
 ## 验收标准
 
 - 无 TypeScript 错误
 - 游戏核心流程可玩
 - 支持 `prefers-reduced-motion`
 - 焦点与 ARIA 符合无障碍要求
+- 单元/组件/E2E 测试通过
