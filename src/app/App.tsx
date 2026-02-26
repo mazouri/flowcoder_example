@@ -45,6 +45,7 @@ export default function App() {
 
   const handleRestart = useCallback(() => {
     engine.start()
+    setSelectedPlant(null)
   }, [engine])
 
   const handleSelectPlant = useCallback(
@@ -79,8 +80,8 @@ export default function App() {
       />
 
       <div className="relative">
-        <GameCanvas engine={engine} />
-        <GameOverlay state={state} />
+        <GameCanvas engine={engine} gameState={state} />
+        <GameOverlay state={state} onRestart={handleRestart} />
       </div>
 
       <aside className="w-full max-w-2xl rounded-xl bg-white/80 p-4 shadow-md">

@@ -2,18 +2,21 @@ import { useRef, useEffect, useCallback } from 'react'
 import { GameEngine } from '@/lib/game/GameEngine'
 import { renderGame } from '@/lib/game/GameRenderer'
 import { CANVAS_OFFSET_X, CANVAS_OFFSET_Y, GRID_COLS, GRID_ROWS, CELL_WIDTH, CELL_HEIGHT } from '@/lib/constants'
+import type { GameState } from '@/lib/types'
 
 interface GameCanvasProps {
   engine: GameEngine
+  gameState: GameState
   onCanvasReady?: (canvas: HTMLCanvasElement) => void
 }
 
 const CANVAS_WIDTH = CANVAS_OFFSET_X + GRID_COLS * CELL_WIDTH + 80
 const CANVAS_HEIGHT = CANVAS_OFFSET_Y + GRID_ROWS * CELL_HEIGHT + 40
 
-export function GameCanvas({ engine, onCanvasReady }: GameCanvasProps) {
+export function GameCanvas({ engine, gameState, onCanvasReady }: GameCanvasProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const rafRef = useRef<number>()
+  const intervalRef = useRef<ReturnType<typeof setInterval>>()
 
   const handleClick = useCallback(
     (e: React.MouseEvent<HTMLCanvasElement>) => {
@@ -48,7 +51,7 @@ export function GameCanvas({ engine, onCanvasReady }: GameCanvasProps) {
 
     let lastTime = performance.now()
 
-    const loop = () => {
+    const tick = () => {
       const now = performance.now()
       const delta = now - lastTime
       lastTime = now
@@ -65,15 +68,26 @@ export function GameCanvas({ engine, onCanvasReady }: GameCanvasProps) {
           engine.getPeas()
         )
       }
-
-      rafRef.current = requestAnimationFrame(loop)
     }
 
+    if (gameState === 'paused') {
+      tick()
+      intervalRef.current = setInterval(tick, 250)
+      return () => {
+        if (intervalRef.current) clearInterval(intervalRef.current)
+      }
+    }
+
+    const loop = () => {
+      tick()
+      rafRef.current = requestAnimationFrame(loop)
+    }
     rafRef.current = requestAnimationFrame(loop)
+
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current)
     }
-  }, [engine, onCanvasReady])
+  }, [engine, onCanvasReady, gameState])
 
   return (
     <canvas

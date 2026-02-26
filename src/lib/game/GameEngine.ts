@@ -26,6 +26,7 @@ import {
 
 let entityId = 0
 const genId = () => `e${++entityId}`
+const resetEntityId = () => { entityId = 0 }
 
 export type GameEvent =
   | { type: 'stateChange'; state: GameState }
@@ -115,6 +116,7 @@ export class GameEngine {
   /** 开始游戏 */
   start() {
     if (this.state !== 'idle' && this.state !== 'lost' && this.state !== 'won') return
+    resetEntityId()
     this.state = 'playing'
     this.sun = INITIAL_SUN
     this.plants = []
