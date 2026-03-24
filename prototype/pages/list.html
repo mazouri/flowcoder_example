@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>UI/UX 原型 - 列表页</title>
+  <link rel="stylesheet" href="../styles/tokens.css">
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/components.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="header">
+    <div class="header__logo">FlowCoder</div>
+    <nav class="header__nav">
+      <a href="../index.html">仪表盘</a>
+      <a href="list.html" class="active">列表</a>
+      <a href="detail.html">详情</a>
+    </nav>
+    <div>
+      <button class="btn btn-primary">新建</button>
+    </div>
+  </header>
+
+  <aside class="sidebar">
+    <a href="../index.html" class="sidebar__item">
+      <span>📊</span>
+      <span>仪表盘</span>
+    </a>
+    <a href="list.html" class="sidebar__item active">
+      <span>📋</span>
+      <span>列表</span>
+    </a>
+    <a href="detail.html" class="sidebar__item">
+      <span>📄</span>
+      <span>详情</span>
+    </a>
+    <a href="#" class="sidebar__item">
+      <span>⚙️</span>
+      <span>设置</span>
+    </a>
+  </aside>
+
+  <main class="main">
+    <div class="main__container">
+      <h1>列表页</h1>
+      <p>展示数据列表，支持筛选与搜索。</p>
+
+      <!-- 筛选栏 -->
+      <div class="card" style="margin-bottom: var(--spacing-lg);">
+        <div style="display: flex; gap: var(--spacing-md); flex-wrap: wrap; align-items: flex-end;">
+          <div style="flex: 1; min-width: 200px;">
+            <label style="display: block; margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); color: var(--color-neutral-500);">搜索</label>
+            <input type="text" class="input" placeholder="搜索...">
+          </div>
+          <div style="min-width: 150px;">
+            <label style="display: block; margin-bottom: var(--spacing-xs); font-size: var(--font-size-sm); color: var(--color-neutral-500);">状态</label>
+            <select class="input">
+              <option>全部</option>
+              <option>进行中</option>
+              <option>已完成</option>
+              <option>待处理</option>
+            </select>
+          </div>
+          <button class="btn btn-primary">筛选</button>
+          <button class="btn btn-secondary">重置</button>
+        </div>
+      </div>
+
+      <!-- 列表 -->
+      <div class="table-wrapper">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>名称</th>
+              <th>状态</th>
+              <th>负责人</th>
+              <th>创建时间</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>#001</td>
+              <td><a href="detail.html">项目 Alpha</a></td>
+              <td><span class="badge badge-success">已完成</span></td>
+              <td>张三</td>
+              <td>2025-02-20 10:00</td>
+              <td>
+                <button class="btn btn-ghost btn-sm">编辑</button>
+                <button class="btn btn-ghost btn-sm">删除</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#002</td>
+              <td><a href="detail.html">项目 Beta</a></td>
+              <td><span class="badge badge-warning">进行中</span></td>
+              <td>李四</td>
+              <td>2025-02-22 14:30</td>
+              <td>
+                <button class="btn btn-ghost btn-sm">编辑</button>
+                <button class="btn btn-ghost btn-sm">删除</button>
+              </td>
+            </tr>
+            <tr>
+              <td>#003</td>
+              <td><a href="detail.html">项目 Gamma</a></td>
+              <td><span class="badge badge-neutral">待处理</span></td>
+              <td>王五</td>
+              <td>2025-02-25 09:15</td>
+              <td>
+                <button class="btn btn-ghost btn-sm">编辑</button>
+                <button class="btn btn-ghost btn-sm">删除</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
